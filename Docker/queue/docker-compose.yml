@@ -1,0 +1,14 @@
+version: '3'
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq-container
+    ports:
+      - "5672:5672" # Порт для RabbitMQ
+      - "15672:15672" # Порт для панели управления RabbitMQ
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    volumes:
+      - ./rabbitmq/definitions.json:/etc/rabbitmq/definitions.json
+    command: rabbitmq-server

@@ -30,6 +30,10 @@ func (p *ProjectsService) GetProjects(userID uint, page, limit int) ([]models.Pr
 	return data, meta, nil
 }
 
+func (p *ProjectsService) GetPermissions(userID int, projectID int) (string, error) {
+	return p.projectUsersRepository.GetPermission(userID, projectID)
+}
+
 func (p *ProjectsService) Create(data *requests.CreateProjectRequest) (*models.Project, error) {
 	_, err := p.userRepository.GetUser(uint64(data.UserID))
 	if err != nil {

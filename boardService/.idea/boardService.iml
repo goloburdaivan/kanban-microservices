@@ -5,9 +5,6 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="authService" />
-    <orderEntry type="module" module-name="gateway" />
-    <orderEntry type="module" module-name="emailConfirmationService" />
-    <orderEntry type="module" module-name="queue" />
+    <orderEntry type="module" module-name="projectsService" />
   </component>
 </module>

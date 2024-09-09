@@ -1,0 +1,14 @@
+{
+  "vhosts": [
+    {
+      "name": "/"
+    }
+  ],
+  "queues": [
+    {
+      "name": "user_confirmed_email",
+      "vhost": "/",
+      "durable": true
+    }
+  ]
+}

@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/../emailConfirmationService/.idea/emailConfirmationService.iml" filepath="$PROJECT_DIR$/../emailConfirmationService/.idea/emailConfirmationService.iml" />
       <module fileurl="file://$PROJECT_DIR$/../gateway/.idea/gateway.iml" filepath="$PROJECT_DIR$/../gateway/.idea/gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/projectsService.iml" filepath="$PROJECT_DIR$/.idea/projectsService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Docker/queue/.idea/queue.iml" filepath="$PROJECT_DIR$/../Docker/queue/.idea/queue.iml" />
     </modules>
   </component>
 </project>

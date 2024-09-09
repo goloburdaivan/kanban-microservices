@@ -41,6 +41,7 @@ func main() {
 	) {
 		r.GET("/user/:userID/projects", projectController.GetProjects)
 		r.GET("/projects/:id", projectController.GetProject)
+		r.GET("/projects/:id/permissions", projectController.GetPermissions)
 		r.POST("/projects", projectController.CreateProject)
 		r.DELETE("/projects/:id", projectController.DeleteProject)
 	})

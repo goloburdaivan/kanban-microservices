@@ -73,6 +73,22 @@ func (p *ProjectController) DeleteProject(c *gin.Context) {
 	c.JSON(http.StatusOK, project)
 }
 
+func (p *ProjectController) GetPermissions(c *gin.Context) {
+	projectID, _ := strconv.Atoi(c.Param("id"))
+	userId, _ := strconv.Atoi(c.DefaultQuery("userId", "0"))
+	permission, err := p.service.GetPermissions(userId, projectID)
+	if err != nil {
+		httpError := errors.NewHttpError("Failed to get permissions", err.Error(), http.StatusNotFound)
+		c.Error(httpError)
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"success": true,
+		"role":    permission,
+	})
+}
+
 func NewProjectController(service *services.ProjectsService) *ProjectController {
 	return &ProjectController{service: service}
 }
