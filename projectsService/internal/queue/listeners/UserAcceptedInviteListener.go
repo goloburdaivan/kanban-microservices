@@ -5,6 +5,7 @@ import (
 	"github.com/streadway/amqp"
 	"log"
 	"projectsService/internal/database/models"
+	"projectsService/internal/enums"
 	"projectsService/internal/repository"
 )
 
@@ -14,6 +15,7 @@ type UserAcceptedInviteListener struct {
 
 func (u *UserAcceptedInviteListener) Listen(msg amqp.Delivery) {
 	var invitation models.ProjectUser
+	invitation.Role = enums.RoleMember
 
 	if err := json.Unmarshal(msg.Body, &invitation); err != nil {
 		log.Println("Unmarshal error:", err)

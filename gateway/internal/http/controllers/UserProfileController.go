@@ -58,7 +58,7 @@ func (u *UserProfileController) CreateProject(c *gin.Context) {
 		return
 	}
 
-	request.OwnerId = uint(userID)
+	request.UserID = uint(userID)
 	result, err := u.projectService.CreateProject(&request)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{

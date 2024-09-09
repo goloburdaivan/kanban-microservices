@@ -38,13 +38,11 @@ func main() {
 
 	container.Invoke(func(
 		projectController *controllers.ProjectController,
-		invitationController *controllers.InvitationController,
 	) {
 		r.GET("/user/:userID/projects", projectController.GetProjects)
 		r.GET("/projects/:id", projectController.GetProject)
 		r.POST("/projects", projectController.CreateProject)
 		r.DELETE("/projects/:id", projectController.DeleteProject)
-		r.POST("/projects/invite", invitationController.InviteUser)
 	})
 
 	r.Run(":8082")

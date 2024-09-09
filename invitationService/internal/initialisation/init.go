@@ -8,7 +8,6 @@ import (
 	"invitationService/internal/http/controllers"
 	"invitationService/internal/models"
 	"invitationService/internal/queue"
-	"invitationService/internal/queue/listeners"
 	"invitationService/internal/repository"
 	"invitationService/internal/services"
 	"log"
@@ -30,11 +29,11 @@ func InitServiceContainer(db *gorm.DB) *dig.Container {
 	})
 
 	container.Provide(repository.NewUserGetter)
+	container.Provide(services.NewProjectExistenceChecker)
 	container.Provide(repository.NewInvitationRepository)
 	container.Provide(services.NewInvitationEmailService)
-	container.Provide(services.NewInvitationAcceptService)
-	container.Provide(listeners.NewUserInvitedListener)
-	container.Provide(controllers.NewInvitationConfirmationController)
+	container.Provide(services.NewInvitationService)
+	container.Provide(controllers.NewInvitationController)
 	return container
 }
 

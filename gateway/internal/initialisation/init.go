@@ -29,7 +29,9 @@ func InitServiceContainer(r *redis.Client) *dig.Container {
 	container.Provide(external.NewProjectGetterAPI)
 	container.Provide(services.NewUserService)
 	container.Provide(services.NewProjectService)
+	container.Provide(services.NewInvitationService)
 	container.Provide(controllers.NewUserProfileController)
+	container.Provide(controllers.NewInvitationController)
 
 	return container
 }

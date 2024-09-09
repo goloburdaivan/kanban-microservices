@@ -1,42 +1,31 @@
-package external
+package services
 
 import (
-	"encoding/json"
 	"fmt"
-	"gateway/internal/dto"
-	"io/ioutil"
 	"net/http"
 )
 
-type ProjectGetter interface {
-	GetAll(userId int) (*dto.ProjectsPaginatedDTO, error)
+type ProjectExistenceChecker interface {
+	Get(projectId int) error
 }
 
-type ProjectGetterAPI struct{}
+type ProjectCheckerAPI struct{}
 
-func (p *ProjectGetterAPI) GetAll(userId int) (*dto.ProjectsPaginatedDTO, error) {
-	result, err := http.Get(fmt.Sprintf("http://localhost:8082/user/%d/projects", userId))
+func (p *ProjectCheckerAPI) Get(projectId int) error {
+	result, err := http.Get(fmt.Sprintf("http://localhost:8082/projects/%d", projectId))
 	if err != nil {
-		return nil, err
+		return fmt.Errorf("Service unavailable")
 	}
 
 	defer result.Body.Close()
 
-	jsonBytes, err := ioutil.ReadAll(result.Body)
-	if err != nil {
-		return nil, err
+	if result.StatusCode != 200 {
+		return fmt.Errorf("Project not found: %d %s", result.StatusCode, result.Status)
 	}
 
-	var project dto.ProjectsPaginatedDTO
-	err = json.Unmarshal(jsonBytes, &project)
-
-	if err != nil {
-		return nil, err
-	}
-
-	return &project, nil
+	return nil
 }
 
-func NewProjectGetterAPI() ProjectGetter {
-	return &ProjectGetterAPI{}
+func NewProjectExistenceChecker() ProjectExistenceChecker {
+	return &ProjectCheckerAPI{}
 }

@@ -3,8 +3,8 @@ package controllers
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"projectsService/internal/database/models"
 	"projectsService/internal/errors"
+	"projectsService/internal/http/requests"
 	"projectsService/internal/services"
 	"strconv"
 )
@@ -44,14 +44,14 @@ func (p *ProjectController) GetProject(c *gin.Context) {
 }
 
 func (p *ProjectController) CreateProject(c *gin.Context) {
-	var project models.Project
-	if err := c.ShouldBindJSON(&project); err != nil {
+	var request requests.CreateProjectRequest
+	if err := c.ShouldBindJSON(&request); err != nil {
 		httpError := errors.NewHttpError("Invalid json body", err.Error(), http.StatusBadRequest)
 		c.Error(httpError)
 		return
 	}
 
-	_, err := p.service.Create(&project)
+	project, err := p.service.Create(&request)
 	if err != nil {
 		httpError := errors.NewHttpError("Failed to create project", err.Error(), http.StatusInternalServerError)
 		c.Error(httpError)

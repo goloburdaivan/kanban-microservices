@@ -20,8 +20,11 @@ func main() {
 	r.Use(middleware.CORSMiddleware())
 	r.Use(middleware.AuthRequired(redis))
 
-	err := container.Invoke(func(userController *controllers.UserProfileController) {
-		routes.ApiRoutes(r, userController)
+	err := container.Invoke(func(
+		userController *controllers.UserProfileController,
+		invitationController *controllers.InvitationController,
+	) {
+		routes.ApiRoutes(r, userController, invitationController)
 	})
 	if err != nil {
 		log.Println(err)

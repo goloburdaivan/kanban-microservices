@@ -29,10 +29,8 @@ func InitServiceContainer(db *gorm.DB) *dig.Container {
 	container.Provide(repository.NewProjectUserRepository)
 	container.Provide(repository.NewUserGetter)
 	container.Provide(services.NewProjectsService)
-	container.Provide(services.NewInvitationService)
 
 	container.Provide(controllers.NewProjectController)
-	container.Provide(controllers.NewInvitationController)
 	container.Provide(listeners.NewUserAcceptedInviteListener)
 
 	return container

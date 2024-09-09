@@ -1,3 +1,5 @@
+// src/components/KanbanBoard.js
+
 import React, { useState, useEffect } from 'react';
 import {
     Box,
@@ -16,16 +18,19 @@ import {
     DialogTitle,
     DialogContent,
     DialogActions,
-    DialogContentText
+    DialogContentText,
+    Tooltip
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
 import WorkIcon from '@mui/icons-material/Work';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import axios from "axios";
 import { useAuth } from "../Providers/AuthProvider";
 import NewProjectModal from "../components/Modals/NewProjectModal";
+import InviteUserModal from "../components/Modals/InviteUserModal"; // Импортируем новый компонент
 
 function KanbanBoard() {
     const { token, logout } = useAuth();
@@ -34,8 +39,10 @@ function KanbanBoard() {
     const [projects, setProjects] = useState([]);
     const [filteredProjects, setFilteredProjects] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
-    const [open, setOpen] = useState(false);
+    const [openNewProjectModal, setOpenNewProjectModal] = useState(false);
     const [openLogoutDialog, setOpenLogoutDialog] = useState(false);
+    const [openInviteUserModal, setOpenInviteUserModal] = useState(false);
+    const [currentProjectId, setCurrentProjectId] = useState(null); // Для хранения текущего ID проекта
 
     const handleProjectAdded = (newProject) => {
         setProjects(prevProjects => {
@@ -75,14 +82,26 @@ function KanbanBoard() {
         }
     };
 
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const handleOpenNewProjectModal = () => setOpenNewProjectModal(true);
+    const handleCloseNewProjectModal = () => setOpenNewProjectModal(false);
     const handleOpenLogoutDialog = () => setOpenLogoutDialog(true);
     const handleCloseLogoutDialog = () => setOpenLogoutDialog(false);
+    const handleOpenInviteUserModal = (projectId) => {
+        setCurrentProjectId(projectId); // Устанавливаем текущий проект
+        setOpenInviteUserModal(true);
+    };
+    const handleCloseInviteUserModal = () => setOpenInviteUserModal(false);
 
     const handleLogout = () => {
         logout();
         handleCloseLogoutDialog();
+    };
+
+    const handleCopyToClipboard = (text) => {
+        navigator.clipboard.writeText(text).then(() => {
+        }).catch(err => {
+            console.error('Failed to copy text: ', err);
+        });
     };
 
     return (
@@ -100,7 +119,15 @@ function KanbanBoard() {
                             {loading ? (
                                 <Skeleton width={120} />
                             ) : (
-                                <Typography variant="h4" color="primary">{user.username}</Typography>
+                                <Box display="flex" alignItems="center">
+                                    <Typography sx={{paddingRight: 3}} variant="h4" color="primary">{user.username}</Typography>
+                                    <Typography variant="h4" color="primary">#{user.ID}</Typography>
+                                    <Tooltip title="Copy ID to clipboard">
+                                        <IconButton onClick={() => handleCopyToClipboard(user.ID)} sx={{ ml: 1 }}>
+                                            <ContentCopyIcon />
+                                        </IconButton>
+                                    </Tooltip>
+                                </Box>
                             )}
                         </Box>
                     </Box>
@@ -137,7 +164,7 @@ function KanbanBoard() {
                     ))
                 ) : (
                     filteredProjects.map((project, index) => (
-                        <Grid item xs={12} sm={6} md={4} key={index + 1}>
+                        <Grid item xs={12} sm={6} md={4} key={project.ID}>
                             <Card sx={{
                                 height: '100%',
                                 display: 'flex',
@@ -156,6 +183,9 @@ function KanbanBoard() {
                                 </CardContent>
                                 <CardActions>
                                     <Button size="small" color="primary">Open</Button>
+                                    <Button size="small" color="secondary" onClick={() => handleOpenInviteUserModal(project.ID)}>
+                                        Invite User
+                                    </Button>
                                 </CardActions>
                             </Card>
                         </Grid>
@@ -171,7 +201,7 @@ function KanbanBoard() {
                         boxShadow: 3,
                         border: '2px dashed #90caf9'
                     }}>
-                        <IconButton color="primary" aria-label="add new project" sx={{ flexDirection: 'column' }} onClick={handleOpen} disabled={loading}>
+                        <IconButton color="primary" aria-label="add new project" sx={{ flexDirection: 'column' }} onClick={handleOpenNewProjectModal} disabled={loading}>
                             <AddIcon sx={{ fontSize: 50 }} />
                             <Typography variant="body1">New Project</Typography>
                         </IconButton>
@@ -179,9 +209,14 @@ function KanbanBoard() {
                 </Grid>
             </Grid>
             <NewProjectModal
-                open={open}
-                onClose={handleClose}
+                open={openNewProjectModal}
+                onClose={handleCloseNewProjectModal}
                 onProjectAdded={handleProjectAdded}
+            />
+            <InviteUserModal
+                open={openInviteUserModal}
+                onClose={handleCloseInviteUserModal}
+                projectId={currentProjectId}
             />
             <Dialog
                 open={openLogoutDialog}
