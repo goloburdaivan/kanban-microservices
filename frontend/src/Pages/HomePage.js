@@ -32,7 +32,7 @@ import { useAuth } from "../Providers/AuthProvider";
 import NewProjectModal from "../components/Modals/NewProjectModal";
 import InviteUserModal from "../components/Modals/InviteUserModal"; // Импортируем новый компонент
 
-function KanbanBoard() {
+function ProjectsBoard() {
     const { token, logout } = useAuth();
     const [loading, setLoading] = useState(true);
     const [user, setUser] = useState(null);
@@ -238,4 +238,4 @@ function KanbanBoard() {
     );
 }
 
-export default KanbanBoard;
+export default ProjectsBoard;

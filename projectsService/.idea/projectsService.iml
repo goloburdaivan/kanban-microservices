@@ -9,5 +9,6 @@
     <orderEntry type="module" module-name="gateway" />
     <orderEntry type="module" module-name="emailConfirmationService" />
     <orderEntry type="module" module-name="queue" />
+    <orderEntry type="module" module-name="boardService" />
   </component>
 </module>

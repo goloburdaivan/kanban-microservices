@@ -7,5 +7,9 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="authService" />
     <orderEntry type="module" module-name="projectsService" />
+    <orderEntry type="module" module-name="Docker" />
+    <orderEntry type="module" module-name="boardService" />
+    <orderEntry type="module" module-name="invitationService" />
+    <orderEntry type="module" module-name="emailConfirmationService" />
   </component>
 </module>

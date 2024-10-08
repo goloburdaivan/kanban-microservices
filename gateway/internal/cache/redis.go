@@ -2,6 +2,7 @@ package cache
 
 import (
 	"context"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"github.com/redis/go-redis/v9"
@@ -31,15 +32,27 @@ func (rc *RedisCache) Get(key string) (interface{}, error) {
 func (rc *RedisCache) Remember(key string, ttl time.Duration, callback func() interface{}) (interface{}, error) {
 	value, err := rc.redis.Get(rc.context, key).Result()
 	if errors.Is(err, redis.Nil) {
-		if err := rc.redis.Set(rc.context, key, callback(), ttl).Err(); err != nil {
+		rawResult := callback()
+		jsonResult, err := json.Marshal(rawResult)
+		if err != nil {
+			return nil, fmt.Errorf("json marshal error: %w", err)
+		}
+
+		if err := rc.redis.Set(rc.context, key, jsonResult, ttl).Err(); err != nil {
 			return nil, fmt.Errorf("redis set error: %w", err)
 		}
-		return callback(), nil
+
+		return rawResult, nil
 	}
 
 	if err != nil {
 		return nil, fmt.Errorf("redis get error: %w", err)
 	}
 
-	return value, nil
+	var cachedData interface{}
+	if err := json.Unmarshal([]byte(value), &cachedData); err != nil {
+		return nil, fmt.Errorf("json unmarshal error: %w", err)
+	}
+
+	return cachedData, nil
 }

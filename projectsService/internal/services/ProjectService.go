@@ -30,7 +30,7 @@ func (p *ProjectsService) GetProjects(userID uint, page, limit int) ([]models.Pr
 	return data, meta, nil
 }
 
-func (p *ProjectsService) GetPermissions(userID int, projectID int) (string, error) {
+func (p *ProjectsService) GetPermissions(userID int, projectID int) (*models.ProjectUser, error) {
 	return p.projectUsersRepository.GetPermission(userID, projectID)
 }
 

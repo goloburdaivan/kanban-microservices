@@ -15,8 +15,8 @@ func main() {
 
 	r := gin.Default()
 	container.Invoke(func(
-		columnsController *controllers.ColumnsController,
-		tasksController *controllers.TasksController,
+		columnsController *controllers.ColumnController,
+		tasksController *controllers.TaskController,
 	) {
 		r.GET("/columns", columnsController.GetAll)
 		r.POST("/columns", columnsController.Create)

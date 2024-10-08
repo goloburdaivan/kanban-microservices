@@ -3,7 +3,6 @@ package main
 import (
 	"gateway/internal/cache"
 	"gateway/internal/config"
-	"gateway/internal/http/controllers"
 	"gateway/internal/initialisation"
 	"gateway/internal/middleware"
 	"gateway/internal/routes"
@@ -20,12 +19,10 @@ func main() {
 	r.Use(middleware.CORSMiddleware())
 	r.Use(middleware.AuthRequired(redis))
 
-	err := container.Invoke(func(
-		userController *controllers.UserProfileController,
-		invitationController *controllers.InvitationController,
-	) {
-		routes.ApiRoutes(r, userController, invitationController)
+	err := container.Invoke(func(routing *routes.Routing) {
+		routing.ApiRoutes(r)
 	})
+	
 	if err != nil {
 		log.Println(err)
 		return

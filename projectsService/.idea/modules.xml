@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../authService/.idea/authService.iml" filepath="$PROJECT_DIR$/../authService/.idea/authService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../boardService/.idea/boardService.iml" filepath="$PROJECT_DIR$/../boardService/.idea/boardService.iml" />
       <module fileurl="file://$PROJECT_DIR$/../emailConfirmationService/.idea/emailConfirmationService.iml" filepath="$PROJECT_DIR$/../emailConfirmationService/.idea/emailConfirmationService.iml" />
       <module fileurl="file://$PROJECT_DIR$/../gateway/.idea/gateway.iml" filepath="$PROJECT_DIR$/../gateway/.idea/gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/projectsService.iml" filepath="$PROJECT_DIR$/.idea/projectsService.iml" />

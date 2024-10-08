@@ -10,18 +10,18 @@ type ProjectUserRepository struct {
 	db *gorm.DB
 }
 
-func (p *ProjectUserRepository) GetPermission(userId, projectId int) (string, error) {
+func (p *ProjectUserRepository) GetPermission(userId, projectId int) (*models.ProjectUser, error) {
 	var record models.ProjectUser
-	err := p.db.First(&record, "user_id = ? AND project_id = ?", userId, projectId).Error
+	err := p.db.Preload("Project").First(&record, "user_id = ? AND project_id = ?", userId, projectId).Error
 	if record.ID == 0 {
-		return "", fmt.Errorf("permissions Not Found")
+		return nil, fmt.Errorf("permissions Not Found")
 	}
 
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 
-	return record.Role, nil
+	return &record, nil
 }
 
 func (p *ProjectUserRepository) Create(model *models.ProjectUser) (*models.ProjectUser, error) {

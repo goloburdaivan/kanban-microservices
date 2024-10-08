@@ -71,7 +71,7 @@ export default function LoginPage() {
                         <LockOutlinedIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                        Вход в систему
+                        Вхід в систему
                     </Typography>
                     <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
                         <TextField
@@ -100,7 +100,7 @@ export default function LoginPage() {
                         />
                         <FormControlLabel
                             control={<Checkbox value="remember" color="primary" />}
-                            label="Запомнить меня"
+                            label="Запам'ятати мене"
                         />
                         <Button
                             type="submit"
@@ -113,12 +113,12 @@ export default function LoginPage() {
                         <Grid container>
                             <Grid item xs>
                                 <Link href="#" variant="body2">
-                                    Забыли пароль?
+                                    Забули пароль?
                                 </Link>
                             </Grid>
                             <Grid item>
                                 <Link href="/register" variant="body2">
-                                    {"Нет аккаунта? Зарегистрируйтесь"}
+                                    {"Немає акаунту? Зареєструйтеся!"}
                                 </Link>
                             </Grid>
                         </Grid>

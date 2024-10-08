@@ -83,10 +83,7 @@ func (p *ProjectController) GetPermissions(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{
-		"success": true,
-		"role":    permission,
-	})
+	c.JSON(http.StatusOK, permission)
 }
 
 func NewProjectController(service *services.ProjectsService) *ProjectController {

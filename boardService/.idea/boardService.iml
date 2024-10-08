@@ -6,5 +6,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="projectsService" />
+    <orderEntry type="module" module-name="gateway" />
+    <orderEntry type="module" module-name="authService" />
   </component>
 </module>

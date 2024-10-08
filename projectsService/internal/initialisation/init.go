@@ -47,7 +47,7 @@ func InitDatabase() *gorm.DB {
 
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
-		log.Fatal("Error connecting to database")
+		log.Fatal("Error connecting to models")
 	}
 
 	return db

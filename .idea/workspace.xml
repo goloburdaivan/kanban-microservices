@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c0c44414-bb25-41bc-881c-8ee3370b1d19" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/Pages/HomePage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authService/cmd/app/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/authService/cmd/app/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authService/internal/http/requests/RegisterRequest.go" beforeDir="false" afterPath="$PROJECT_DIR$/authService/internal/http/requests/RegisterRequest.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Routing/Routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Routing/Routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/.idea/gateway.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectsService/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/projectsService/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectsService/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/projectsService/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectsService/.idea/projectsService.iml" beforeDir="false" afterPath="$PROJECT_DIR$/projectsService/.idea/projectsService.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +18,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "goloburdaivan"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/goloburdaivan/kanban-microservices.git",
+    "accountId": "43c57434-a0aa-4fc9-9a00-c8d1b0c9fec6"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -38,7 +47,7 @@
     "git-widget-placeholder": "main",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "D:/Course/kanban-microservices",
+    "last_opened_file_path": "D:/Course/kanban-microservices/boardService",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm"
@@ -47,8 +56,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-gosdk-5df93f7ad4aa-dfc284eb1eb8-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-242.20224.306" />
-        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-GO-242.20224.306" />
+        <option value="bundled-gosdk-33c477a475b1-e0158606a674-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-241.18034.61" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-GO-241.18034.61" />
       </set>
     </attachedChunks>
   </component>

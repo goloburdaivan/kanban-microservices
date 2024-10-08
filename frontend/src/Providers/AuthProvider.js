@@ -30,7 +30,7 @@ const AuthProvider = ({ children }) => {
         () => ({
             token,
             setToken,
-            logout,  // Добавляем функцию logout в контекст
+            logout,
         }),
         [token]
     );
